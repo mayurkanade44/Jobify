@@ -1,19 +1,9 @@
-import logo from "../assets/images/log.png";
+import logo from "../assets/images/logo.svg";
 
 const Logo = () => {
   return (
     <>
       <img src={logo} alt="jobster logo" className="logo" />
-      <span
-        style={{
-          fontSize: 39,
-          paddingLeft: 8,
-          fontWeight: 700,
-          letterSpacing: 2,
-        }}
-      >
-        Trekathon
-      </span>
     </>
   );
 };

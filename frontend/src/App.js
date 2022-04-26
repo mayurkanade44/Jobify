@@ -7,18 +7,26 @@ import {
   SharedLayout,
   Profile,
   Stats,
-  AddTrek,
-  AllTreks,
+  AddJob,
+  AllJobs,
 } from "./pages/dashboard";
+import { ProtectedRoute } from "./components";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<SharedLayout />}>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <SharedLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<Stats />} />
-          <Route path="all-treks" element={<AllTreks />} />
-          <Route path="add-trek" element={<AddTrek />} />
+          <Route path="all-jobs" element={<AllJobs />} />
+          <Route path="add-job" element={<AddJob />} />
           <Route path="profile" element={<Profile />} />
         </Route>
         <Route path="/landing" element={<Landing />} />

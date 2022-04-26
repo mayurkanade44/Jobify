@@ -1,7 +1,7 @@
-import AddTrek from "./AddTrek";
-import AllTreks from "./AllTreks";
+import AddJob from "./AddJob";
+import AllJobs from "./AllJobs";
 import Profile from "./Profile";
 import SharedLayout from "./SharedLayout";
 import Stats from "./Stats";
 
-export { SharedLayout, Profile, Stats, AddTrek, AllTreks };
+export { SharedLayout, Profile, Stats, AddJob, AllJobs };

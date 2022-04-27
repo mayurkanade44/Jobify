@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 const BigSidebar = () => {
   const { isSidebarOpen } = useSelector((store) => store.user);
+
   return (
     <Wrapper>
       <div

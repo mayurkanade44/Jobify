@@ -4,10 +4,13 @@ import Logo from "./Logo";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleSidebar } from "../features/user/userSlice";
 import NavLinks from "./NavLinks";
-
 const SmallSidebar = () => {
-  const dispatch = useDispatch();
   const { isSidebarOpen } = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+
+  const toggle = () => {
+    dispatch(toggleSidebar());
+  };
   return (
     <Wrapper>
       <div
@@ -16,16 +19,13 @@ const SmallSidebar = () => {
         }
       >
         <div className="content">
-          <button
-            className="close-btn"
-            onClick={() => dispatch(toggleSidebar())}
-          >
+          <button className="close-btn" onClick={toggle}>
             <FaTimes />
           </button>
           <header>
             <Logo />
           </header>
-          <NavLinks toggleSidebar={toggleSidebar} />
+          <NavLinks toggleSidebar={toggle} />
         </div>
       </div>
     </Wrapper>

@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   align-items: center;
 
   .icon {
-    font-size: 1rem;
+    font-size: 1.5rem;
     margin-right: 1rem;
     display: flex;
     align-items: center;

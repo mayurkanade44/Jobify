@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import customFetch from "../../utils/axios";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
+import { logoutUser } from "../user/userSlice";
+import { showLoading, hideLoading, getAllJobs } from "../allJobs/allJobsSlice";
 
 const initialState = {
   loading: false,
@@ -16,6 +18,27 @@ const initialState = {
   editJobId: "",
 };
 
+export const createJob = createAsyncThunk(
+  "job/createJob",
+  async (job, thunkAPI) => {
+    try {
+      const res = await customFetch.post("/jobs", job, {
+        headers: {
+          authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+        },
+      });
+      thunkAPI.dispatch(clearValues());
+      return res.data;
+    } catch (error) {
+      if (error.response.status === 401) {
+        thunkAPI.dispatch(logoutUser());
+        return thunkAPI.rejectWithValue("Unathorized!! logging out");
+      }
+      return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+  }
+);
+
 const jobSlice = createSlice({
   name: "job",
   initialState,
@@ -24,8 +47,24 @@ const jobSlice = createSlice({
       state[name] = value;
     },
     clearValues: () => {
-      return initialState
-    }
+      return {
+        ...initialState,
+        jobLocation: getUserFromLocalStorage()?.location || "",
+      };
+    },
+  },
+  extraReducers: {
+    [createJob.pending]: (state) => {
+      state.loading = true;
+    },
+    [createJob.fulfilled]: (state) => {
+      state.loading = false;
+      toast.success("Job created");
+    },
+    [createJob.rejected]: (state, { payload }) => {
+      state.loading = false;
+      toast.error(payload);
+    },
   },
 });
 

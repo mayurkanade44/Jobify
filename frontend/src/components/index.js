@@ -1,4 +1,5 @@
 import BigSidebar from "./BigSidebar";
+import ChartsContainer from "./ChartsContainer";
 import FormRow from "./FormRow";
 import Jobs from "./Jobs";
 import Logo from "./Logo";
@@ -7,6 +8,7 @@ import NavLinks from "./NavLinks";
 import ProtectedRoute from "./ProtectedRoute";
 import Search from "./Search";
 import SmallSidebar from "./SmallSidebar";
+import StatsContainer from "./StatsContainer";
 
 export {
   Logo,
@@ -17,5 +19,7 @@ export {
   ProtectedRoute,
   NavLinks,
   Jobs,
-  Search
+  Search,
+  StatsContainer,
+  ChartsContainer,
 };

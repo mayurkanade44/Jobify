@@ -7,6 +7,7 @@ import {
   clearValues,
   createJob,
   handleChange,
+  editJobs,
 } from "../../features/job/jobSlice";
 import { useEffect } from "react";
 
@@ -31,6 +32,14 @@ const AddJob = () => {
 
     if (!position || !company || !jobLocation) {
       return toast.error("Please Fill Out All Fields");
+    }
+    if (isEditing) {
+      return dispatch(
+        editJobs({
+          jobId: editJobId,
+          job: { position, company, jobLocation, jobType, status },
+        })
+      );
     }
     dispatch(createJob({ position, company, jobLocation, status, jobType }));
   };
